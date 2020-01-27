@@ -1,7 +1,7 @@
 #include "Application.h"
 
 
-extern Shader* bwShader;
+//extern Shader* bwShader;
 
 Application::Application() {
 
@@ -67,15 +67,15 @@ Application::Application() {
 	ImGui_ImplOpenGL3_Init(glsl_version);
 
 
-	if (EDImage::TryLoad("../chikis.jpg", img))
-	{
-		std::cout << "img loaded successfully\n";
-	}
-	else
-	{
-		std::cout << "img load fail\n";
-		return;
-	}
+	//if (EDImage::TryLoad("../chikis.jpg", img))
+	//{
+	//	std::cout << "img loaded successfully\n";
+	//}
+	//else
+	//{
+	//	std::cout << "img load fail\n";
+	//	return;
+	//}
 
 	//std::string pathNegative = "negative.png";
 	//EDImage::TrySave(negative.get(), pathNegative, img->GetWidth(), img->GetHeight(), img->GetNChannels());
@@ -218,17 +218,17 @@ Application::~Application() {
 	//delete bw;
 }
 
-void Application::Save(EDImage* img, const std::string& path)
-{
-	if (EDImage::TrySave(*img, path))
-	{
-		std::cout << "success " << path << " save \n";
-	}
-	else
-	{
-		std::cout << "failed " << path << " save \n";
-	}
-}
+//void Application::Save(EDImage* img, const std::string& path)
+//{
+//	if (EDImage::TrySave(*img, path))
+//	{
+//		std::cout << "success " << path << " save \n";
+//	}
+//	else
+//	{
+//		std::cout << "failed " << path << " save \n";
+//	}
+//}
 
 void Application::MainLoop()
 {
@@ -264,16 +264,16 @@ void Application::MainLoop()
 void Application::Render()
 {
 
-	Quad *quad = Quad::Instance();
-	if (bwShader) {
-		bwShader->use();
-		glActiveTexture(0);
-		glBindTexture(GL_TEXTURE_2D, texId);
-		bwShader->setInt("tex", 0);
-		quad->Bind();
-		quad->Draw();
+	//Quad *quad = Quad::Instance();
+	//if (bwShader) {
+	//	bwShader->use();
+	//	glActiveTexture(0);
+	//	glBindTexture(GL_TEXTURE_2D, texId);
+	//	bwShader->setInt("tex", 0);
+	//	quad->Bind();
+	//	quad->Draw();
 
-	}
+	//}
 }
 
 void Application::ImGui()
@@ -282,22 +282,22 @@ void Application::ImGui()
 
 	if (ImGui::InputInt("Convolution Height", &heightConv))
 	{
-		heightConv = clamp(7, 1, heightConv);
+		heightConv = (7, 1, heightConv);
 	}
 
 	if (ImGui::InputInt("Convolution Width", &widthConv))
 	{
-		widthConv = clamp(7, 1, widthConv);
+		widthConv = (7, 1, widthConv);
 	}
 
 	if (ImGui::InputInt("Pivot X", &pivotX))
 	{
-		pivotX = clamp(widthConv-1, 0, pivotX);
+		pivotX = (widthConv-1, 0, pivotX);
 	}
 
 	if (ImGui::InputInt("Pivot Y", &pivotY))
 	{
-		pivotY = clamp(heightConv - 1, 1, pivotY);
+		pivotY = (heightConv - 1, 1, pivotY);
 	}
 
 	ImGui::Text("Color button with Picker:");
@@ -373,11 +373,11 @@ void Application::ImGui()
 
 	if (ImGui::Button("recompile"))
 	{
-		delete bwShader;
+		//delete bwShader;
 
 
 
-		std::string vert = Shader::GetSrcFromFile("bw.vert");
+		//std::string vert = Shader::GetSrcFromFile("bw.vert");
 		//std::string frag = init + end;
 		std::string init("#version 330 core\n"
 			"in vec2 fragPos;\n"
@@ -444,12 +444,12 @@ std::string end(
 	"fragColor = vec4(texColor,1);\n"
 			"}\n");
 
-		std::string frag = init + end;
-		bwShader = Shader::FromString(vert.c_str(), frag.c_str());
-		std::cout << "recompiled" << std::endl;
+		//std::string frag = init + end;
+		//bwShader = Shader::FromString(vert.c_str(), frag.c_str());
+		//std::cout << "recompiled" << std::endl;
 
-		std::unique_ptr<RawData> negative{ EDNegativeHA(img->data, img->GetWidth(), img->GetHeight()) };
-		texId = GetTexture(negative.get(), img->GetWidth(), img->GetHeight());
+		//std::unique_ptr<RawData> negative{ EDNegativeHA(img->data, img->GetWidth(), img->GetHeight()) };
+		//texId = GetTexture(negative.get(), img->GetWidth(), img->GetHeight());
 
 
 	}

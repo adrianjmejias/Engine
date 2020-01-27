@@ -1,9 +1,9 @@
 #include "EDClientpch.h"
 
 
-#include "EasyDIPAPI/EDImage.h"
-#include "EasyDIPAPI/EDConvolution.h"
-#include "EasyDIPAPI/EDCompositeConv.h"
+//#include "EasyDIPAPI/EDImage.h"
+//#include "EasyDIPAPI/EDConvolution.h"
+//#include "EasyDIPAPI/EDCompositeConv.h"
 
 
 
@@ -16,9 +16,9 @@ class Application
 	//ImGui::FileBrowser fileDialog;
 	GLFWwindow *window;
 
-	EDImage *img;
-	EDCompositeConv* composite;
-	EDConvolution* bw, grey;
+	//EDImage *img;
+	//EDCompositeConv* composite;
+	//EDConvolution* bw, grey;
 	
 
 
@@ -35,7 +35,7 @@ class Application
 public:
 	Application();
 	~Application();
-	void Save(EDImage* img, const std::string& path);
+	//void Save(EDImage* img, const std::string& path);
 	void MainLoop();
 	void Render();
 	void ImGui();

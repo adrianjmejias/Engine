@@ -10,10 +10,10 @@ IncludeDir["SDL"] = "dependencies/SDL/include"
 IncludeDir["stb"] = "dependencies/stb"
 IncludeDir["GLFW"] = "dependencies/glfw/include"
 
-workspace "EasyDIP"
+workspace "BoletaEngine"
 disablewarnings { "26495" }
    architecture "x64"
-   startproject("EasyDIPClient")
+   startproject("BoletaEngineClient")
    configurations { "Debug", "Release"}
 
    group "Dependencies"
@@ -23,7 +23,7 @@ disablewarnings { "26495" }
       -- include "dependencies/SDL"	
    group ""
 
-project "EasyDIPAPI"
+project "BoletaEngine"
    systemversion "8.1"
    architecture "x64"
 
@@ -42,8 +42,6 @@ project "EasyDIPAPI"
 		-- "%{IncludeDir.SDL}",
 		"%{IncludeDir.glad}",
       "%{IncludeDir.stb}",
-      
-
 	}
 
    filter "configurations:Debug"
@@ -71,35 +69,8 @@ project "EasyDIPAPI"
             ["Enable Testability"] = "YES",
       }
       
-   
 
-
-project "EasyDIPBenchmark"
-   systemversion "8.1"
-   location("%{prj.name}")
-   kind "ConsoleApp"
-   language "C++"
-   cppdialect "C++17"
-   includedirs{
-      "EasyDIPAPI",
-      "%{IncludeDir.stb}",
-      "%{IncludeDir.glad}",
-		"%{IncludeDir.GLFW}"
-      
-   }
-   links{"EasyDIPAPI", "glad", "GLFW"}
-   files { "%{prj.name}/**.h", "%{prj.name}/**.cpp" }
-
-   filter "configurations:Debug"
-      defines { "DEBUG" }
-      symbols "On"
-
-   filter "configurations:Release"
-      defines { "NDEBUG" }
-      optimize "On"
-
-            
-project "EasyDIPClient"
+project "BoletaEngineClient"
    systemversion "8.1"
    location("%{prj.name}")
    kind "ConsoleApp"
@@ -109,7 +80,7 @@ project "EasyDIPClient"
    files { "%{prj.name}/**.h", "%{prj.name}/**.cpp" }
 
    links {
-      "EasyDIPAPI",
+      "BoletaEngine",
       "glad",
       "GLFW",
       -- "dependencies/SDL/VisualC/SDLmain/SDLmain.vcxproj",
@@ -123,7 +94,7 @@ project "EasyDIPClient"
    }
 
    includedirs{
-      "EasyDIPAPI",
+      "BoletaEngine",
 		"%{prj.name}/src",
 		"%{IncludeDir.SDL}",
 		"%{IncludeDir.glad}",
