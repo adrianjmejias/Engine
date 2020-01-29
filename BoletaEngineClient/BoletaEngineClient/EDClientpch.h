@@ -16,5 +16,7 @@
 #include <glad/glad.h> 
 #include <GLFW/glfw3.h>
 
+#include <BoletaEngine/BoletaEngine.h>
+
 #endif // !__ED_CLIENT_PCH__
 

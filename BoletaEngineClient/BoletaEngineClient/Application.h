@@ -20,10 +20,7 @@ class Application
 	//EDCompositeConv* composite;
 	//EDConvolution* bw, grey;
 	
-
-
-	unsigned int texId = 0;
-	unsigned int texOGImg = 0;
+	BE::Engine engine;
 
 	int windowWidth;
 	int windowHeight;
@@ -39,7 +36,7 @@ public:
 	void MainLoop();
 	void Render();
 	void ImGui();
-	
+	void Init();
 	static void HelpMarker(const char* desc);
 
 };
